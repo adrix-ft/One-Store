@@ -25,7 +25,7 @@ export default function CookieBanner() {
           <p className="text-sm text-zinc-900 font-medium mb-1">We use cookies</p>
           <p className="text-xs text-zinc-500">
             We use essential cookies to make our platform work and to securely route P2P UPI payments. 
-            By continuing to use OneStore, you consent to our <Link to="/privacy" className="underline hover:text-zinc-900">Privacy Policy</Link>.
+            By continuing to use Only Store, you consent to our <Link to="/privacy" className="underline hover:text-zinc-900">Privacy Policy</Link>.
           </p>
         </div>
         <div className="flex shrink-0 gap-3 w-full md:w-auto">

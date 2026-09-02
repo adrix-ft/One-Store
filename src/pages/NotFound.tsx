@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-6 text-center">
       <Helmet>
-        <title>404 - Page Not Found | OneStore</title>
+        <title>404 - Page Not Found | Only Store</title>
         <meta name="description" content="The page you are looking for could not be found." />
       </Helmet>
       <h1 className="text-4xl font-bold text-zinc-900 mb-4 tracking-tight">404</h1>

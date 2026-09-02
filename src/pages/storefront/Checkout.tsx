@@ -153,7 +153,7 @@ export default function Checkout() {
     <div className="max-w-4xl mx-auto">
       {listing.master_games && (
         <Helmet>
-          <title>{listing.master_games.title} - {profile.store_name} | OneStore</title>
+          <title>{listing.master_games.title} - {profile.store_name} | Only Store</title>
           <meta name="description" content={`Buy ${listing.master_games.title} for ₹${listing.price_inr} at ${profile.store_name}.`} />
           <meta property="og:title" content={`${listing.master_games.title} - ${profile.store_name}`} />
           <meta property="og:description" content={`Buy ${listing.master_games.title} for ₹${listing.price_inr} at ${profile.store_name}.`} />

@@ -97,13 +97,13 @@ export default function Store() {
   return (
     <div className="space-y-12 pb-12">
       <Helmet>
-        <title>{profile.store_name} | OneStore</title>
-        <meta name="description" content={profile.bio || `Welcome to ${profile.store_name} on OneStore. Browse our selection of game keys.`} />
-        <meta property="og:title" content={`${profile.store_name} | OneStore`} />
-        <meta property="og:description" content={profile.bio || `Welcome to ${profile.store_name} on OneStore. Browse our selection of game keys.`} />
+        <title>{profile.store_name} | Only Store</title>
+        <meta name="description" content={profile.bio || `Welcome to ${profile.store_name} on Only Store. Browse our selection of game keys.`} />
+        <meta property="og:title" content={`${profile.store_name} | Only Store`} />
+        <meta property="og:description" content={profile.bio || `Welcome to ${profile.store_name} on Only Store. Browse our selection of game keys.`} />
         <meta property="twitter:card" content="summary" />
-        <meta property="twitter:title" content={`${profile.store_name} | OneStore`} />
-        <meta property="twitter:description" content={profile.bio || `Welcome to ${profile.store_name} on OneStore. Browse our selection of game keys.`} />
+        <meta property="twitter:title" content={`${profile.store_name} | Only Store`} />
+        <meta property="twitter:description" content={profile.bio || `Welcome to ${profile.store_name} on Only Store. Browse our selection of game keys.`} />
       </Helmet>
       
       {loading ? (

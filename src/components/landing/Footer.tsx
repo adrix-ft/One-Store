@@ -68,14 +68,14 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-2 pr-8">
             <Link to="/" className="inline-block mb-4">
               <span className="text-xl tracking-tight flex items-baseline font-bold text-zinc-900">
-                One<span className="text-zinc-400">Store</span>
+                Only <span className="text-zinc-400">Store</span>
               </span>
             </Link>
             <p className="text-sm text-zinc-500 leading-relaxed mb-6">
               The compliant storefront infrastructure for independent game key sellers.
             </p>
             <div className="text-xs text-zinc-400 leading-relaxed">
-              OneStore Technologies Pvt. Ltd.<br/>
+              Only Store Technologies Pvt. Ltd.<br/>
               Koramangala 4th Block,<br/>
               Bengaluru, Karnataka 560034, India
             </div>
@@ -94,7 +94,7 @@ export default function Footer() {
             <h4 className="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-4">Company</h4>
             <ul>
               <li><Link to="/about" className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer block mb-3">About Us</Link></li>
-              <li><a href="mailto:support@onestore.gg" className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer block mb-3">Contact</a></li>
+              <li><a href="mailto:support@onlystore.gg" className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer block mb-3">Contact</a></li>
             </ul>
           </div>
 
@@ -133,7 +133,7 @@ export default function Footer() {
         
         {/* 3. Legal Disclaimers & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-zinc-400">
-          <p>© {new Date().getFullYear()} OneStore. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Only Store. All rights reserved.</p>
           <p className="max-w-xl text-left md:text-right leading-relaxed">
             Not affiliated with, authorized by, or endorsed by Valve Corporation or Steam. All game titles, trademarks, and copyrights are the property of their respective owners.
           </p>

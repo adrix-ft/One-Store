@@ -6,8 +6,8 @@ export default function Privacy() {
   return (
     <div className="bg-zinc-50 min-h-screen text-zinc-900 font-sans selection:bg-zinc-200">
       <Helmet>
-        <title>Privacy Policy | OneStore</title>
-        <meta name="description" content="OneStore's privacy policy and data protection guidelines." />
+        <title>Privacy Policy | Only Store</title>
+        <meta name="description" content="Only Store's privacy policy and data protection guidelines." />
       </Helmet>
       <main className="max-w-3xl mx-auto px-6 py-24">
         <Link to="/" className="inline-flex items-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors mb-12">
@@ -21,7 +21,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-lg font-semibold text-zinc-900 mb-3">1. Information We Collect</h2>
             <p>
-              OneStore collects minimal data necessary to operate the storefront infrastructure. 
+              Only Store collects minimal data necessary to operate the storefront infrastructure. 
               For sellers, we collect email addresses, store profiles, and UPI IDs. 
               For buyers, we may collect email addresses exclusively for delivering digital goods (game keys) 
               post-purchase.
@@ -31,7 +31,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-lg font-semibold text-zinc-900 mb-3">2. Payment Data Independence</h2>
             <p>
-              OneStore <strong>never collects, processes, or stores</strong> sensitive payment information such as credit card numbers, 
+              Only Store <strong>never collects, processes, or stores</strong> sensitive payment information such as credit card numbers, 
               CVCs, or banking passwords. All transactions utilize Direct P2P UPI routing. The only financial data processed 
               by our system is the public UPI ID provided by the seller and the UTR (Unique Transaction Reference) number submitted by the buyer to verify the transfer.
             </p>

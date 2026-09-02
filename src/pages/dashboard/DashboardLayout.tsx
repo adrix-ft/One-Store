@@ -48,14 +48,14 @@ export default function DashboardLayout() {
   return (
     <div className="min-h-screen bg-zinc-50 flex flex-col md:flex-row">
       <Helmet>
-        <title>Dashboard | OneStore</title>
+        <title>Dashboard | Only Store</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-white border-r border-zinc-200 flex flex-col sticky top-0 md:h-screen z-10">
         <div className="h-16 flex items-center px-6 border-b border-zinc-200">
           <Link to="/dashboard" className="text-xl tracking-tight flex items-baseline font-bold text-zinc-900">
-            One<span className="text-zinc-400">Store</span>
+            Only <span className="text-zinc-400">Store</span>
           </Link>
         </div>
         

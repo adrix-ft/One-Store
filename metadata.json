@@ -1,5 +1,5 @@
 {
-  "name": "OneStore",
+  "name": "Only Store",
   "description": "Ultra-minimalist SaaS storefront for independent game key sellers.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

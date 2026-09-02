@@ -11,9 +11,9 @@ export default function Landing() {
   return (
     <div className="bg-zinc-50 min-h-screen text-zinc-900 font-sans selection:bg-zinc-200 overflow-x-hidden relative pb-20 md:pb-0">
       <Helmet>
-        <title>OneStore | Game Key Storefront Infrastructure</title>
+        <title>Only Store | Game Key Storefront Infrastructure</title>
         <meta name="description" content="Build your game key storefront in minutes. Zero escrow, instant P2P UPI settlements, and automated Steam catalog sync." />
-        <meta property="og:title" content="OneStore | Game Key Storefront Infrastructure" />
+        <meta property="og:title" content="Only Store | Game Key Storefront Infrastructure" />
         <meta property="og:description" content="Build your game key storefront in minutes. Zero escrow, instant P2P UPI settlements, and automated Steam catalog sync." />
       </Helmet>
 

@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-zinc-50/80 backdrop-blur-md border-b border-zinc-200 px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <Link to="/" className="text-xl tracking-tight flex items-baseline font-bold text-zinc-900">
-          One<span className="text-zinc-400">Store</span>
+          Only <span className="text-zinc-400">Store</span>
         </Link>
       </div>
       

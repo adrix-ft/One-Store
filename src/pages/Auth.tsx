@@ -55,14 +55,14 @@ export default function Auth({ type }: { type: "login" | "signup" }) {
   return (
     <div className="min-h-screen bg-zinc-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <Helmet>
-        <title>{type === 'login' ? 'Sign In | OneStore' : 'Create Account | OneStore'}</title>
-        <meta name="description" content={type === 'login' ? 'Sign in to your OneStore seller dashboard.' : 'Create your independent game key storefront today.'} />
+        <title>{type === 'login' ? 'Sign In | Only Store' : 'Create Account | Only Store'}</title>
+        <meta name="description" content={type === 'login' ? 'Sign in to your Only Store seller dashboard.' : 'Create your independent game key storefront today.'} />
       </Helmet>
       
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Link to="/" className="flex justify-center mb-6">
           <span className="text-2xl tracking-tight flex items-baseline font-bold text-zinc-900 justify-center">
-            One<span className="text-zinc-400">Store</span>
+            Only <span className="text-zinc-400">Store</span>
           </span>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-semibold text-zinc-900 tracking-tight">
@@ -162,7 +162,7 @@ export default function Auth({ type }: { type: "login" | "signup" }) {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-zinc-500">
-                  {type === "login" ? "New to OneStore?" : "Already have an account?"}
+                  {type === "login" ? "New to Only Store?" : "Already have an account?"}
                 </span>
               </div>
             </div>
