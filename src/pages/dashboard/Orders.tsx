@@ -69,7 +69,7 @@ export default function Orders() {
     <div className="space-y-8 text-zinc-900">
       <div>
         <h1 className="text-2xl font-bold tracking-tight mb-2">Orders</h1>
-        <p className="text-zinc-500">Manage and approve your incoming orders. Always verify the UTR with your bank app.</p>
+        <p className="text-zinc-500">Buyers will message you their receipt on WhatsApp. Verify the UTR in your bank, send them the key, and approve the order here.</p>
       </div>
 
       <div className="bg-white shadow-sm border border-zinc-200 rounded-2xl overflow-hidden">

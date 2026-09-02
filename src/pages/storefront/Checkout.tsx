@@ -140,8 +140,14 @@ export default function Checkout() {
         throw insertError;
       }
 
-      alert("Order submitted! The seller will approve it shortly.");
-      navigate(`/${profile.store_slug}`);
+      if (profile.whatsapp_number) {
+        const message = `Hello ${profile.store_name},\n\nI just paid ₹${listing.price_inr} for *${listing.master_games?.title}*.\n\nMy details:\nEmail: ${formData.email}\nDiscord: ${formData.discord || 'N/A'}\nUTR: ${formData.utr}\n\nPlease verify the payment and send me the key!`;
+        const cleanPhone = profile.whatsapp_number.replace(/\D/g, '');
+        window.location.href = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+      } else {
+        alert("Order submitted! The seller will approve it shortly.");
+        navigate(`/${profile.store_slug}`);
+      }
     } catch (err: any) {
       setError(err.message || "Failed to submit order.");
     } finally {
