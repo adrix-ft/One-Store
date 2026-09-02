@@ -10,6 +10,9 @@ import StoreLayout from "./pages/storefront/StoreLayout";
 import Store from "./pages/storefront/Store";
 import GameDetails from "./pages/storefront/GameDetails";
 import Checkout from "./pages/storefront/Checkout";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ManageSellers from "./pages/admin/ManageSellers";
 import Terms from "./pages/legal/Terms";
 import Privacy from "./pages/legal/Privacy";
 import Refunds from "./pages/legal/Refunds";
@@ -58,6 +61,11 @@ export default function App() {
            <Route path="inventory" element={<Inventory />} />
            <Route path="orders" element={<Orders />} />
            <Route path="settings" element={<Settings />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+           <Route index element={<AdminDashboard />} />
+           <Route path="sellers" element={<ManageSellers />} />
         </Route>
 
         <Route path="/:store_slug" element={<StoreLayout />}>

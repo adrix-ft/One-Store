@@ -1,5 +1,5 @@
 import { useOutletContext, Link } from "react-router-dom";
-import { IndianRupee, Activity, ShoppingCart } from "lucide-react";
+import { IndianRupee, Activity, ShoppingCart, MessageCircleQuestion } from "lucide-react";
 import type { Database } from "../../types";
 
 type Profile = Database['public']['Tables']['seller_profiles']['Row'];
@@ -20,7 +20,15 @@ export default function Dashboard() {
     );
   }
 
-  const isDebtAlert = profile.platform_balance !== null && profile.platform_balance <= (profile.credit_limit || -500) * 0.8;
+  const today = new Date();
+  let remainingDays = 0;
+  if (profile.subscription_ends_at) {
+    const endsAt = new Date(profile.subscription_ends_at);
+    const diffTime = endsAt.getTime() - today.getTime();
+    remainingDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+  }
+
+  const isLive = profile.subscription_status === 'ACTIVE' && remainingDays > 0;
 
   return (
     <div className="space-y-8 text-zinc-900">
@@ -46,7 +54,7 @@ export default function Dashboard() {
           <p className="text-3xl font-bold text-zinc-900">₹0.00</p>
           <p className="text-sm text-zinc-400 mt-1">All time</p>
         </div>
-
+        
         <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-6">
           <div className="flex items-center justify-between text-zinc-500 mb-4">
             <h3 className="font-medium">Orders Pending</h3>
@@ -55,19 +63,44 @@ export default function Dashboard() {
           <p className="text-3xl font-bold text-zinc-900">0</p>
           <p className="text-sm text-zinc-400 mt-1">Require approval</p>
         </div>
-
-        <div className={`bg-white shadow-sm border rounded-2xl p-6 ${isDebtAlert ? 'border-red-500/50 bg-red-50/50' : 'border-zinc-200'}`}>
+        
+        <div className={`bg-white shadow-sm border rounded-2xl p-6 ${!isLive ? 'border-orange-500/50 bg-orange-50/50' : 'border-zinc-200'}`}>
           <div className="flex items-center justify-between text-zinc-500 mb-4">
-            <h3 className="font-medium">Platform Balance</h3>
-            <Activity className={`w-5 h-5 ${isDebtAlert ? 'text-red-500' : 'text-zinc-400'}`} />
+            <h3 className="font-medium">Store Status</h3>
+            <Activity className={`w-5 h-5 ${!isLive ? 'text-orange-500' : 'text-green-500'}`} />
           </div>
-          <p className={`text-3xl font-bold ${isDebtAlert ? 'text-red-600' : 'text-zinc-900'}`}>
-            ₹{Math.abs(profile.platform_balance || 0).toFixed(2)}
+          <p className={`text-3xl font-bold ${!isLive ? 'text-orange-600' : 'text-green-600'}`}>
+            {isLive ? 'Live' : 'Offline'}
           </p>
-          <p className="text-sm text-zinc-400 mt-1">
-            {profile.platform_balance !== null && profile.platform_balance < 0 ? 'Owed to platform' : 'All clear'}
+          <p className="text-sm text-zinc-500 mt-1 font-medium">
+            {isLive 
+              ? `${remainingDays} days remaining` 
+              : 'Rent payment required'}
           </p>
         </div>
+      </div>
+
+      {/* Help Line Card */}
+      <div className="bg-white border border-zinc-200 shadow-sm rounded-2xl p-6 md:p-8 mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="flex items-start gap-4">
+          <div className="p-3 bg-zinc-100 rounded-xl flex-shrink-0">
+            <MessageCircleQuestion className="w-6 h-6 text-zinc-700" />
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-zinc-900 mb-1">Need help or want to go live?</h3>
+            <p className="text-zinc-500 text-sm max-w-xl">
+              Pay your store rent to make your storefront live, or contact the developer for any assistance or inquiries.
+            </p>
+          </div>
+        </div>
+        <a 
+          href="https://wa.me/917906568743" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-medium transition-colors shadow-sm flex items-center gap-2"
+        >
+          Message on WhatsApp
+        </a>
       </div>
     </div>
   );

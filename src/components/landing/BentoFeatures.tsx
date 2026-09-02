@@ -19,8 +19,8 @@ export default function BentoFeatures() {
 
         <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
           <TrendingDown className="w-6 h-6 text-zinc-900 mb-4" />
-          <h3 className="font-semibold text-zinc-900 mb-1">Post-Paid Fees</h3>
-          <p className="text-sm text-zinc-500">Sell now, settle commissions later.</p>
+          <h3 className="font-semibold text-zinc-900 mb-1">Pre-Paid Rent</h3>
+          <p className="text-sm text-zinc-500">Pay a fixed rent, keep 100% of sales.</p>
         </div>
 
         <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">

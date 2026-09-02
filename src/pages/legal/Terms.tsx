@@ -46,10 +46,9 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-zinc-900 mb-3">4. Platform Fees and Settlement</h2>
+            <h2 className="text-lg font-semibold text-zinc-900 mb-3">4. Platform Rent</h2>
             <p>
-              Only Store operates on a post-paid fee model. Sellers are billed periodically for the platform usage fees based on their transaction volume. 
-              Failure to clear the ledger balance may result in temporary suspension of storefront capabilities until the balance is settled.
+              Only Store operates on a pre-paid rent model. Sellers must pay a fixed recurring rent to keep their storefronts live. There are zero commission fees per transaction—sellers keep 100% of their direct sales. Failure to pay rent will result in the storefront being temporarily taken offline.
             </p>
           </section>
 

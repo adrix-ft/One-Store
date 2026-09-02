@@ -37,6 +37,19 @@ export default function StoreLayout() {
     return <div className="min-h-screen bg-zinc-50 flex items-center justify-center text-red-500">Store not found.</div>;
   }
 
+  const today = new Date();
+  const endsAt = profile.subscription_ends_at ? new Date(profile.subscription_ends_at) : new Date(0);
+  const isLive = profile.subscription_status === 'ACTIVE' && endsAt > today;
+
+  if (!isLive) {
+    return (
+      <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-6 text-center">
+        <h1 className="text-3xl font-bold text-zinc-900 mb-4">Store Unavailable</h1>
+        <p className="text-zinc-500 mb-8 max-w-md">This storefront is currently offline or undergoing maintenance.</p>
+      </div>
+    );
+  }
+
   let parsedLogoUrl = "";
   if (profile.brand_color) {
     try {
@@ -79,12 +92,6 @@ export default function StoreLayout() {
           </div>
         </div>
       </header>
-
-      {profile.is_paused && (
-        <div className="bg-red-500/10 border-b border-red-500/50 px-6 py-3 text-center text-red-400 text-sm font-medium">
-          This store is currently unable to accept new orders.
-        </div>
-      )}
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Outlet context={{ profile }} />

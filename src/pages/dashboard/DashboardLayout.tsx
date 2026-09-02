@@ -112,9 +112,9 @@ export default function DashboardLayout() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-h-screen overflow-hidden">
-        {profile?.is_paused && (
-          <div className="bg-red-500/10 border-b border-red-500/50 px-6 py-3 flex items-center justify-center text-red-400 text-sm font-medium">
-            Your storefront is currently paused because your platform balance has exceeded the credit limit. Please settle your dues.
+        {profile && profile.subscription_status !== 'ACTIVE' && (
+          <div className="bg-orange-500/10 border-b border-orange-500/50 px-6 py-3 flex items-center justify-center text-orange-600 text-sm font-medium">
+            Your storefront is currently offline. Please pay your rent to go live. Contact the developer on WhatsApp: +91 7906568743
           </div>
         )}
         <div className="flex-1 overflow-y-auto p-4 md:p-8">

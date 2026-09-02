@@ -92,7 +92,7 @@ export default function Checkout() {
   if (profile.is_paused) return <div className="text-center py-12 text-red-400">Checkout is currently disabled for this store.</div>;
 
   // Assuming platform fee is a fixed percentage, e.g., 5%
-  const commissionInr = Number((listing.price_inr * 0.05).toFixed(2));
+  const commissionInr = 0;
 
   // Dummy order ID for QR note (we don't have real order ID until insert, but QR needs one)
   const tempOrderId = Math.random().toString(36).substring(2, 10).toUpperCase();

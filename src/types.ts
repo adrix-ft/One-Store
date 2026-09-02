@@ -55,6 +55,8 @@ export interface Database {
           platform_balance: number | null
           credit_limit: number | null
           is_paused: boolean | null
+          subscription_ends_at: string | null
+          subscription_status: 'PENDING' | 'ACTIVE' | 'EXPIRED' | null
           created_at: string | null
           updated_at: string | null
         }
@@ -71,6 +73,8 @@ export interface Database {
           platform_balance?: number | null
           credit_limit?: number | null
           is_paused?: boolean | null
+          subscription_ends_at?: string | null
+          subscription_status?: 'PENDING' | 'ACTIVE' | 'EXPIRED' | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -87,6 +91,8 @@ export interface Database {
           platform_balance?: number | null
           credit_limit?: number | null
           is_paused?: boolean | null
+          subscription_ends_at?: string | null
+          subscription_status?: 'PENDING' | 'ACTIVE' | 'EXPIRED' | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -162,6 +168,23 @@ export interface Database {
           status?: 'PENDING_APPROVAL' | 'COMPLETED' | 'DISPUTED' | 'CANCELLED' | null
           created_at?: string | null
           settled_at?: string | null
+        }
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: 'SELLER' | 'ADMIN'
+          created_at: string | null
+        }
+        Insert: {
+          id: string
+          role?: 'SELLER' | 'ADMIN'
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          role?: 'SELLER' | 'ADMIN'
+          created_at?: string | null
         }
       }
     }
