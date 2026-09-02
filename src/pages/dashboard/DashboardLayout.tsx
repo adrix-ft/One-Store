@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Package, ShoppingCart, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingCart, Settings, LogOut, Shield } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -11,6 +11,7 @@ export default function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -18,6 +19,16 @@ export default function DashboardLayout() {
       if (!session) {
         navigate('/login');
         return;
+      }
+
+      const { data: roleData } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('id', session.user.id)
+        .maybeSingle();
+        
+      if (roleData && roleData.role === 'ADMIN') {
+        setIsAdmin(true);
       }
       
       let { data, error } = await supabase
@@ -99,7 +110,16 @@ export default function DashboardLayout() {
           })}
         </nav>
 
-        <div className="p-4 border-t border-zinc-200">
+        <div className="p-4 border-t border-zinc-200 space-y-1">
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-indigo-600 hover:bg-indigo-50 transition-colors"
+            >
+              <Shield className="w-5 h-5" />
+              Admin Panel
+            </Link>
+          )}
           <button
             onClick={handleLogout}
             className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors"

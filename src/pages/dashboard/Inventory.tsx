@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Search, Plus, Loader2, IndianRupee, X, Upload, AlertCircle, CheckCircle2, Zap, PackageX, Trash2 } from "lucide-react";
+import { Search, Plus, Loader2, IndianRupee, X, Upload, AlertCircle, CheckCircle2, Zap, PackageX, Trash2, Edit2, Check } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 import type { Database } from "../../types";
 
@@ -51,6 +51,11 @@ export default function Inventory() {
   const [customCoverInput, setCustomCoverInput] = useState<string>("");
   const [isUpdatingCover, setIsUpdatingCover] = useState(false);
 
+  // Price Edit State
+  const [editingPriceId, setEditingPriceId] = useState<string | null>(null);
+  const [editPriceValue, setEditPriceValue] = useState<string>("");
+  const [isUpdatingPrice, setIsUpdatingPrice] = useState(false);
+
   const fetchListings = async () => {
     if (!profile) return;
     setLoading(true);
@@ -73,6 +78,34 @@ export default function Inventory() {
   useEffect(() => {
     fetchListings();
   }, [profile]);
+
+  const handleUpdatePrice = async (listingId: string) => {
+    if (!profile) return;
+    const price = parseFloat(editPriceValue);
+    if (isNaN(price) || price <= 0) {
+      alert("Please enter a valid price greater than 0.");
+      return;
+    }
+
+    setIsUpdatingPrice(true);
+    try {
+      const { error } = await supabase
+        .from('listings')
+        .update({ price_inr: price })
+        .eq('id', listingId)
+        .eq('seller_id', profile.id);
+        
+      if (error) throw error;
+      
+      setListings(listings.map(l => l.id === listingId ? { ...l, price_inr: price } : l));
+      setEditingPriceId(null);
+    } catch (err) {
+      console.error("Error updating price:", err);
+      alert("Failed to update price.");
+    } finally {
+      setIsUpdatingPrice(false);
+    }
+  };
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -635,9 +668,57 @@ export default function Inventory() {
                         <span className="font-medium text-zinc-900">{listing.master_games?.title}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 font-mono flex items-center gap-1 text-zinc-900 font-medium">
-                      <IndianRupee className="w-3 h-3 text-zinc-400" />
-                      {listing.price_inr}
+                    <td className="px-6 py-4 font-mono text-zinc-900 font-medium">
+                      {editingPriceId === listing.id ? (
+                        <div className="flex items-center gap-2">
+                          <div className="relative flex-1 max-w-[100px]">
+                            <IndianRupee className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400" />
+                            <input
+                              type="number"
+                              min="1"
+                              autoFocus
+                              value={editPriceValue}
+                              onChange={(e) => setEditPriceValue(e.target.value)}
+                              className="w-full pl-6 pr-2 py-1 text-sm bg-white border border-zinc-300 rounded focus:outline-none focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400 text-zinc-900"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleUpdatePrice(listing.id);
+                                if (e.key === 'Escape') setEditingPriceId(null);
+                              }}
+                            />
+                          </div>
+                          <button
+                            onClick={() => handleUpdatePrice(listing.id)}
+                            disabled={isUpdatingPrice}
+                            className="p-1 bg-green-50 text-green-600 rounded hover:bg-green-100 disabled:opacity-50 transition-colors"
+                          >
+                            {isUpdatingPrice ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                          </button>
+                          <button
+                            onClick={() => setEditingPriceId(null)}
+                            disabled={isUpdatingPrice}
+                            className="p-1 bg-zinc-100 text-zinc-600 rounded hover:bg-zinc-200 disabled:opacity-50 transition-colors"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 group/price">
+                          <div className="flex items-center gap-1">
+                            <IndianRupee className="w-3 h-3 text-zinc-400" />
+                            {listing.price_inr}
+                          </div>
+                          <button
+                            onClick={() => {
+                              setEditingPriceId(listing.id);
+                              setEditPriceValue(listing.price_inr.toString());
+                            }}
+                            className="p-1 opacity-0 group-hover/price:opacity-100 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 rounded transition-all"
+                            title="Edit Price"
+                          >
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${listing.is_active ? 'bg-green-100 text-green-700' : 'bg-zinc-100 text-zinc-500'}`}>
