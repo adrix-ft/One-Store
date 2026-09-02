@@ -20,14 +20,33 @@ export default function DashboardLayout() {
         return;
       }
       
-      const { data } = await supabase
+      let { data, error } = await supabase
         .from('seller_profiles')
         .select('*')
         .eq('id', session.user.id)
-        .single();
+        .maybeSingle();
         
-      if (data) {
+      if (!data && !error) {
+        const { data: newProfile, error: insertError } = await supabase
+          .from('seller_profiles')
+          .insert([{ 
+            id: session.user.id, 
+            store_name: 'My Store', 
+            store_slug: `store-${Math.random().toString(36).substring(2, 8)}`,
+            upi_id: ''
+          }])
+          .select()
+          .single();
+          
+        if (newProfile) {
+          setProfile(newProfile);
+        } else if (insertError) {
+          console.error("Error creating profile:", insertError);
+        }
+      } else if (data) {
         setProfile(data);
+      } else if (error) {
+        console.error("Error fetching profile:", error);
       }
     };
     checkUser();
