@@ -142,7 +142,10 @@ export default function Checkout() {
 
       if (profile.whatsapp_number) {
         const message = `Hello ${profile.store_name},\n\nI just paid ₹${listing.price_inr} for *${listing.master_games?.title}*.\n\nMy details:\nEmail: ${formData.email}\nDiscord: ${formData.discord || 'N/A'}\nUTR: ${formData.utr}\n\nPlease verify the payment and send me the key!`;
-        const cleanPhone = profile.whatsapp_number.replace(/\D/g, '');
+        let cleanPhone = profile.whatsapp_number.replace(/\D/g, '');
+        if (cleanPhone.length === 10) {
+          cleanPhone = '91' + cleanPhone;
+        }
         window.location.href = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
       } else {
         alert("Order submitted! The seller will approve it shortly.");

@@ -1,11 +1,42 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { IndianRupee, Activity, ShoppingCart, MessageCircleQuestion } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import type { Database } from "../../types";
 
 type Profile = Database['public']['Tables']['seller_profiles']['Row'];
 
 export default function Dashboard() {
   const { profile } = useOutletContext<{ profile: Profile | null }>();
+  
+  const [stats, setStats] = useState({ revenue: 0, pendingOrders: 0 });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      if (!profile) return;
+      
+      const { count: pendingCount } = await supabase
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .eq('seller_id', profile.id)
+        .eq('status', 'PENDING_APPROVAL');
+
+      const { data: completedOrders } = await supabase
+        .from('orders')
+        .select('amount_inr')
+        .eq('seller_id', profile.id)
+        .eq('status', 'COMPLETED');
+
+      const revenue = completedOrders?.reduce((acc, order) => acc + (order.amount_inr || 0), 0) || 0;
+
+      setStats({
+        revenue,
+        pendingOrders: pendingCount || 0
+      });
+    };
+    
+    fetchStats();
+  }, [profile]);
 
   if (!profile) {
     return (
@@ -51,7 +82,7 @@ export default function Dashboard() {
             <h3 className="font-medium">Total Revenue</h3>
             <IndianRupee className="w-5 h-5 text-zinc-400" />
           </div>
-          <p className="text-3xl font-bold text-zinc-900">₹0.00</p>
+          <p className="text-3xl font-bold text-zinc-900">₹{stats.revenue.toFixed(2)}</p>
           <p className="text-sm text-zinc-400 mt-1">All time</p>
         </div>
         
@@ -60,7 +91,7 @@ export default function Dashboard() {
             <h3 className="font-medium">Orders Pending</h3>
             <ShoppingCart className="w-5 h-5 text-zinc-400" />
           </div>
-          <p className="text-3xl font-bold text-zinc-900">0</p>
+          <p className="text-3xl font-bold text-zinc-900">{stats.pendingOrders}</p>
           <p className="text-sm text-zinc-400 mt-1">Require approval</p>
         </div>
         

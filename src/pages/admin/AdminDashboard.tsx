@@ -24,7 +24,7 @@ export default function AdminDashboard() {
         setStats({
           totalSellers: totalSellers || 0,
           activeStores: activeStores || 0,
-          totalRevenue: 0, // Placeholder
+          totalRevenue: (activeStores || 0) * 500, // Assuming ₹500/mo rent
         });
       } catch (err) {
         console.error("Error fetching stats:", err);
@@ -64,7 +64,7 @@ export default function AdminDashboard() {
             <h3 className="font-medium">Total Rent Revenue</h3>
             <IndianRupee className="w-5 h-5 text-zinc-400" />
           </div>
-          <p className="text-3xl font-bold text-zinc-900">₹0.00</p>
+          <p className="text-3xl font-bold text-zinc-900">₹{stats.totalRevenue.toFixed(2)}</p>
           <p className="text-sm text-zinc-400 mt-1">Estimated</p>
         </div>
       </div>
