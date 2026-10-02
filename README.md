@@ -1,76 +1,120 @@
 <div align="center">
-  <img src="https://api.iconify.design/lucide/gamepad-2.svg?color=%2318181b" alt="Only Store Logo" width="80" height="80" />
-  
-  <h1>Only Store</h1>
-  
-  <p>
+
+  <img src="https://api.iconify.design/lucide/gamepad-2.svg?color=%2318181b" alt="Only Store Logo" width="100" height="100" />
+
+  <h1 align="center">Only Store</h1>
+
+  <p align="center">
     <strong>Ultra-minimalist SaaS storefront for independent game key sellers.</strong>
+    <br />
+    Effortlessly sell game keys, manage inventory, and process P2P UPI payments.
   </p>
 
-  <p>
-    <a href="#features">Features</a> •
-    <a href="#tech-stack">Tech Stack</a> •
-    <a href="#getting-started">Getting Started</a>
+  <p align="center">
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react" alt="React" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+    <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
+    <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" alt="Express.js" /></a>
   </p>
+  
+  <h3>
+    <a href="#-about-the-project">About</a>
+    <span> · </span>
+    <a href="#-key-features">Features</a>
+    <span> · </span>
+    <a href="#-tech-stack">Tech Stack</a>
+    <span> · </span>
+    <a href="#-getting-started">Quick Start</a>
+  </h3>
 </div>
 
 <hr />
 
-## 🎮 About The Project
+## 📖 About The Project
 
-**Only Store** is a modern, highly optimized platform tailored for independent game key sellers to host their own custom storefronts. It provides all the essential tools to manage inventory, process orders, and run a streamlined e-commerce operation without the bloat.
+**Only Store** is a modern, ultra-minimalist platform tailored specifically for independent game key sellers. It empowers creators and sellers to host their own fully-functional, beautifully designed custom storefronts in seconds. 
 
-## ✨ Features
+Whether you're selling Steam keys, console codes, or gift cards, **Only Store** provides you with all the essential e-commerce tools—from inventory tracking to seamless peer-to-peer (P2P) UPI payments—without any of the traditional platform bloat or heavy fees. It is built to be fast, beautiful, and highly converting.
 
-- 🏪 **Custom Storefronts**: Create and manage your own game key store with a unique storefront URL (`/:store_slug`).
-- 📦 **Inventory Management**: Add, update, and manage game keys effortlessly from your dashboard.
-- 🛍️ **Order Processing**: Track orders and handle checkouts seamlessly.
-- 💳 **P2P UPI Payments**: Support for peer-to-peer UPI payment flow.
-- 🛠️ **Admin Dashboard**: A comprehensive dashboard for store owners to monitor sales and manage sellers.
+---
+
+## ✨ Key Features
+
+### 🏪 Branded Custom Storefronts
+Get your own dedicated storefront URL (e.g., `/:store_slug`) featuring a minimalist, high-conversion design tailored for gamers.
+
+### 💳 Zero-Fee P2P UPI Payments
+Keep 100% of your earnings. We integrate direct Peer-to-Peer (P2P) UPI payments with dynamic QR code generation, so funds go straight into your bank account.
+
+### 📦 Effortless Inventory & Orders
+Manage your entire game catalog, adjust stock levels, and track live orders seamlessly through an intuitive and powerful **Seller Dashboard**. 
+
+### 🤖 AI-Powered Integrations
+Integrated with **Google Gemini AI** (`@google/genai`) to help automate store descriptions, marketing copy, and enhance customer interactions.
+
+### 🛡️ Admin & Seller Management
+A comprehensive built-in admin panel allows platform owners to manage sellers, oversee subscriptions, and ensure compliance.
+
+---
 
 ## 💻 Tech Stack
 
-<details>
-  <summary>Click to expand</summary>
-  <ul>
-    <li><strong>Frontend:</strong> React 19, React Router v7, Tailwind CSS v4, Motion</li>
-    <li><strong>Backend/API:</strong> Express.js</li>
-    <li><strong>Database & Auth:</strong> Supabase</li>
-    <li><strong>AI Integration:</strong> Google Gemini API (<code>@google/genai</code>)</li>
-    <li><strong>Build Tools:</strong> Vite, TypeScript, ESBuild</li>
-  </ul>
-</details>
+Our tech stack is built for **speed, scale, and smooth user experiences**:
+
+* **Frontend:** React 19, React Router v7, Tailwind CSS v4, Motion (for smooth micro-animations).
+* **Backend:** Express.js running on Node.
+* **Database & Auth:** Supabase (PostgreSQL + Auth).
+* **AI:** Google Gemini API for intelligent storefront features.
+* **Tooling:** Vite for lightning-fast builds, TypeScript for rock-solid type safety, and ESBuild.
+
+---
 
 ## 🚀 Getting Started
 
-Follow these steps to set up the project locally.
+Want to run this project locally? Follow these simple steps:
 
 ### 1. Prerequisites
-
-Ensure you have <strong>Node.js</strong> installed on your machine.
+Ensure you have [Node.js](https://nodejs.org/) (v18+) and `npm` installed.
 
 ### 2. Installation
-
-Clone the repository and install the required dependencies:
-
+Clone the repository and install all dependencies:
 ```bash
+git clone https://github.com/adrix-ft/One-Store.git
+cd One-Store
 npm install
 ```
 
 ### 3. Environment Variables
-
-Create a `.env` file in the root directory and configure the necessary keys. See `.env.example` for reference.
-
+Create a `.env` file in the root of the project (you can copy from `.env.example`) and fill in your keys:
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+# Google Gemini API
+GEMINI_API_KEY=your_gemini_key_here
+
+# Supabase configuration (if applicable)
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 4. Run Development Server
-
-Start the local development server:
-
+Start the application locally:
 ```bash
 npm run dev
 ```
+Your app will now be running! Open your browser to `http://localhost:5173/` (or the port specified in your terminal).
 
-Your application should now be running.
+---
+
+## 📸 Sneak Peek
+
+*(You can replace these placeholder images with actual screenshots of your app!)*
+
+<div align="center">
+  <img src="https://placehold.co/800x400/18181b/ffffff?text=Storefront+Preview" alt="Storefront Preview" style="border-radius: 8px; margin-bottom: 20px; width: 100%; max-width: 800px;" />
+  <img src="https://placehold.co/800x400/18181b/ffffff?text=Seller+Dashboard" alt="Seller Dashboard" style="border-radius: 8px; width: 100%; max-width: 800px;" />
+</div>
+
+<br />
+
+<div align="center">
+  <p>Built with ❤️ for independent creators.</p>
+</div>
